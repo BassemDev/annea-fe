@@ -2,7 +2,6 @@
 name: Annea UI CI/CD 
 
 on:
-  push:
   pull_request:
     branches: [main]
   workflow_dispatch:
@@ -77,16 +76,3 @@ jobs:
         with:
             image: ${{ secrets.DOCKERHUB_USERNAME }}/annea-ui:latest
             run: echo "Running the latest docker image"
-
-  # Push to cloud provider
-  Update_vercel_image:
-      runs-on: ubuntu-latest
-      steps:
-        - uses: actions/checkout@v4
-        - uses: amondnet/vercel-action@v25.1.1
-          if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-          with:
-            vercel-token: ${{ secrets.VERCEL_SERVICE_TOKEN }}
-            vercel-org-id: ${{ secrets.VERCEL_PERSONAL_ID}}
-            vercel-project-id: ${{ secrets.PROJECT_ID}}
-      
