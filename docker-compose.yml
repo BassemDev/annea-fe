@@ -1,0 +1,12 @@
+# Docker compose schema version 
+version: "3.8"
+
+services:
+  app:
+    container_name: docker-annea-ui-container
+    image: docker-annea-ui-image
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:80"
