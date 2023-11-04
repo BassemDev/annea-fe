@@ -5,7 +5,7 @@ COPY package.json .
 COPY package-lock.json .
 RUN npm ci
 COPY . .
-RUN npm run buid
+RUN npm run build
 
 # Serving the app via the imgae from nginx
 FROM nginx:1.25.3
