@@ -1,4 +1,4 @@
-# Docker compose schema version 
+# Docker compose schema version
 version: "3.8"
 
 services:
