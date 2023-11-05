@@ -2,9 +2,12 @@ import React from "react";
 import styled from "styled-components";
 import { MdOutlineDeleteSweep } from "react-icons/md";
 import { AiOutlineEdit } from "react-icons/ai";
+import { BiSolidError } from "react-icons/bi";
+import { AiOutlineNotification } from "react-icons/ai";
 
 import { TABLE_HEADER_LABELS } from "./constants";
 import { Indicator } from "../../__generated_graphql__/graphql";
+import { ApolloError } from "@apollo/client";
 
 const TableHeader = styled.th`
   padding: 5px;
@@ -12,7 +15,7 @@ const TableHeader = styled.th`
   border-bottom: 1px solid #e5e7eb;
 
   font-weight: 500;
-  color: #8383aa;
+  color: #44448d;
   text-align: left;
   font-size: 1.1rem;
   cursor: pointer;
@@ -20,6 +23,14 @@ const TableHeader = styled.th`
 
 const Table = styled.table`
   width: 100%;
+`;
+
+const SpecialCaseRow = styled.tr`
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+
+  padding: 20px;
 `;
 
 const DataCells = styled.td<{ align?: string }>`
@@ -39,11 +50,19 @@ const SpacerRight = styled.span`
   margin-right: 15px;
 `;
 
+const NotDataCell = styled.td`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+`;
+
 interface Props {
   indicators: Indicator[] | undefined;
+  error: ApolloError | undefined;
 }
 
-export const IndicatorTable: React.FC<Props> = ({ indicators }) => {
+export const IndicatorTable: React.FC<Props> = ({ indicators, error }) => {
   return (
     <Table>
       <thead>
@@ -54,21 +73,30 @@ export const IndicatorTable: React.FC<Props> = ({ indicators }) => {
         </tr>
       </thead>
       <tbody>
-        {indicators === undefined && (
-          <tr>
-            <td colSpan={3}></td>
-          </tr>
+        {(indicators === undefined || error) && (
+          <SpecialCaseRow>
+            <td colSpan={5}>
+              <BiSolidError size={20} color="#f44336" />
+              <SpacerRight />
+              <span>There was a problem loading your data.</span>
+            </td>
+          </SpecialCaseRow>
         )}
         {indicators?.length === 0 && (
-          <tr>
-            <td colSpan={3}>
-              <span>There is no Element to display currently</span>
-            </td>
-          </tr>
+          <SpecialCaseRow>
+            <NotDataCell colSpan={5}>
+              <AiOutlineNotification size={20} color="#f8ae03" />
+              <SpacerRight />
+              <span>There is no Element to display currently.</span>
+            </NotDataCell>
+          </SpecialCaseRow>
         )}
         {indicators?.length !== 0 &&
           indicators?.map((indicator, index) => (
             <tr key={index}>
+              <DataCells>
+                <span>{indicator.id}</span>
+              </DataCells>
               <DataCells>
                 <span>{indicator.turbineId}</span>
               </DataCells>

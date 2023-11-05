@@ -2,21 +2,25 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { GlobalStyle } from "./glabalStyle";
+import { PrimeReactProvider } from "primereact/api";
+import "primereact/resources/themes/lara-light-indigo/theme.css";
 
 // Internal dependencies imports
-import { App } from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { ApolloAppProvider } from "./providers/ApolloAppProvider";
+import { App } from "./components/app/App";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement,
 );
 root.render(
   <React.StrictMode>
-    <ApolloAppProvider>
-      <GlobalStyle />
-      <App />
-    </ApolloAppProvider>
+    <PrimeReactProvider>
+      <ApolloAppProvider>
+        <GlobalStyle />
+        <App />
+      </ApolloAppProvider>
+    </PrimeReactProvider>
   </React.StrictMode>,
 );
 
