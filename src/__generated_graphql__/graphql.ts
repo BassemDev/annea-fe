@@ -42,6 +42,8 @@ export type CreateIndicatorInput = {
 
 export type Indicator = {
   __typename?: "Indicator";
+  /** Indicator id  associated to the indicator */
+  id: Scalars["Int"]["output"];
   /** Indicator associated to the turbine */
   indicator: Scalars["Float"]["output"];
   timestamp: Scalars["DateTime"]["output"];
