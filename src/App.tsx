@@ -1,12 +1,11 @@
 import React from "react";
-import "./App.css";
+
+import { IndicatorView } from "./components/indicatorView/IndicatorView";
 
 export const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>Welcome from Annea.</p>
-      </header>
-    </div>
+    <>
+      <IndicatorView />
+    </>
   );
 };

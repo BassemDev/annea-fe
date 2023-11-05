@@ -1,9 +1,9 @@
 // External dependencies imports
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { GlobalStyle } from "./glabalStyle";
 
 // Internal dependencies imports
-import "./index.css";
 import { App } from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { ApolloAppProvider } from "./providers/ApolloAppProvider";
@@ -14,6 +14,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <ApolloAppProvider>
+      <GlobalStyle />
       <App />
     </ApolloAppProvider>
   </React.StrictMode>,
