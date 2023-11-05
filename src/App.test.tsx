@@ -1,9 +1,14 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import { App } from "./App";
+import { ApolloAppProvider } from "./providers/ApolloAppProvider";
 
-test("renders learn react link", () => {
-  render(<App />);
-  const linkElement = screen.getByText(/Welcome from Annea/i);
+test("Renders app component", () => {
+  render(
+    <ApolloAppProvider>
+      <App />
+    </ApolloAppProvider>,
+  );
+  const linkElement = screen.getByText(/Loading.../i);
   expect(linkElement).toBeInTheDocument();
 });
