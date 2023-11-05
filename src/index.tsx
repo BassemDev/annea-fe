@@ -1,15 +1,21 @@
+// External dependencies imports
 import React from "react";
 import ReactDOM from "react-dom/client";
+
+// Internal dependencies imports
 import "./index.css";
 import { App } from "./App";
 import reportWebVitals from "./reportWebVitals";
+import { ApolloAppProvider } from "./providers/ApolloAppProvider";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement,
 );
 root.render(
   <React.StrictMode>
-    <App />
+    <ApolloAppProvider>
+      <App />
+    </ApolloAppProvider>
   </React.StrictMode>,
 );
 
