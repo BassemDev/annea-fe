@@ -70,8 +70,8 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/annea-ui:latest
           secrets: |
-            "REACT_APP_GRAPHQL_API=${{secrets.REACT_APP_GRAPHQL_API}}"
-            "REACT_APP_AUTHORIZATION_API_TOKEN=${{secrets.REACT_APP_AUTHORIZATION_API_TOKEN}}"
+            "REACT_APP_GRAPHQL_API=${{ secrets.REACT_APP_GRAPHQL_API }}"
+            "REACT_APP_AUTHORIZATION_API_TOKEN=${{ secrets.REACT_APP_AUTHORIZATION_API_TOKEN }}"
 
       # Run the docker image
       - name: Run image in a container
