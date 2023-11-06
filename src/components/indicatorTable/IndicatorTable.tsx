@@ -57,6 +57,28 @@ const NotDataCell = styled.td`
   flex-direction: row;
 `;
 
+const StyledMdOutlineDeleteSweep = styled(MdOutlineDeleteSweep)`
+  transition: 0.4s;
+
+  &:hover {
+    width: 30px;
+    height: 30px;
+
+    transition: all 0.4s ease-in-out 0s;
+  }
+`;
+
+const StyledAiOutlineEdit = styled(AiOutlineEdit)`
+  transition: 0.4s;
+
+  &:hover {
+    width: 30px;
+    height: 30px;
+
+    transition: all 0.4s ease-in-out 0s;
+  }
+`;
+
 interface Props {
   indicators: Indicator[] | undefined;
   error: ApolloError | undefined;
@@ -112,9 +134,13 @@ export const IndicatorTable: React.FC<Props> = ({
                 <span>{indicator.timestamp}</span>
               </DataCells>
               <DataCells align="right">
-                <AiOutlineEdit size={22} color="#41c6b4" cursor="pointer" />
+                <StyledAiOutlineEdit
+                  size={22}
+                  color="#41c6b4"
+                  cursor="pointer"
+                />
                 <SpacerRight />
-                <MdOutlineDeleteSweep
+                <StyledMdOutlineDeleteSweep
                   size={22}
                   color="#f44336"
                   cursor="pointer"

@@ -40,7 +40,9 @@ export const IndicatorView = () => {
   ] = useLazyQuery<{ indicator: Indicator }>(GET_INDICATORS_BY_ID);
 
   // Delete indicator mutation when clicking on the delete icon
-  const [deleteIndicator] = useMutation<DeletedIndicator>(DELETE_INDICATOR);
+  const [deleteIndicator] = useMutation<DeletedIndicator>(DELETE_INDICATOR, {
+    refetchQueries: [GET_INDICATORS],
+  });
 
   const [listOfIndicator, setListOnIndicator] = useState<Indicator[]>([]);
   const toast = useRef<Toast>(null);
@@ -81,7 +83,6 @@ export const IndicatorView = () => {
           detail: `Operation successful - Indicator with ${id} does NOT exist any more.`,
           life: 3000,
         });
-        await refetch();
       } else {
         toast.current.show({
           severity: "error",
