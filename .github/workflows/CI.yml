@@ -78,4 +78,5 @@ jobs:
         uses: addnab/docker-run-action@v3
         with:
           image: ${{ secrets.DOCKERHUB_USERNAME }}/annea-ui:latest
+          options: -e REACT_APP_GRAPHQL_API=${{secrets.REACT_APP_GRAPHQL_API}} \
           run: echo "Running the latest docker image"
