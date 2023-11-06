@@ -4,11 +4,12 @@ import ReactDOM from "react-dom/client";
 import { GlobalStyle } from "./glabalStyle";
 import { PrimeReactProvider } from "primereact/api";
 import "primereact/resources/themes/lara-light-indigo/theme.css";
+import { BrowserRouter } from "react-router-dom";
 
 // Internal dependencies imports
 import reportWebVitals from "./reportWebVitals";
 import { ApolloAppProvider } from "./providers/ApolloAppProvider";
-import { App } from "./components/app/App";
+import { Routes } from "./Routes";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement,
@@ -18,7 +19,9 @@ root.render(
     <PrimeReactProvider>
       <ApolloAppProvider>
         <GlobalStyle />
-        <App />
+        <BrowserRouter>
+          <Routes />
+        </BrowserRouter>
       </ApolloAppProvider>
     </PrimeReactProvider>
   </React.StrictMode>,
