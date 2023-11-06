@@ -60,9 +60,14 @@ const NotDataCell = styled.td`
 interface Props {
   indicators: Indicator[] | undefined;
   error: ApolloError | undefined;
+  onIndicatorDelete: (id: number) => void;
 }
 
-export const IndicatorTable: React.FC<Props> = ({ indicators, error }) => {
+export const IndicatorTable: React.FC<Props> = ({
+  indicators,
+  error,
+  onIndicatorDelete,
+}) => {
   return (
     <Table>
       <thead>
@@ -113,6 +118,7 @@ export const IndicatorTable: React.FC<Props> = ({ indicators, error }) => {
                   size={22}
                   color="#f44336"
                   cursor="pointer"
+                  onClick={() => onIndicatorDelete(indicator.id)}
                 />
               </DataCells>
             </tr>

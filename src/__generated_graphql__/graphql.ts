@@ -40,6 +40,12 @@ export type CreateIndicatorInput = {
   variable: Scalars["Int"]["input"];
 };
 
+export type DeletedIndicator = {
+  __typename?: "DeletedIndicator";
+  /** Affected id after delete operation */
+  affected: Scalars["Int"]["output"];
+};
+
 export type Indicator = {
   __typename?: "Indicator";
   /** Indicator id  associated to the indicator */
@@ -56,7 +62,7 @@ export type Indicator = {
 export type Mutation = {
   __typename?: "Mutation";
   createIndicator: Indicator;
-  removeIndicator: Indicator;
+  removeIndicator: DeletedIndicator;
   updateIndicator: Indicator;
 };
 
