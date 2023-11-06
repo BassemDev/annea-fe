@@ -7,8 +7,6 @@ services:
     image: docker-annea-ui-image
     build:
       context: .
-      args:
-        REACT_APP_GRAPHQL_API: ${REACT_APP_GRAPHQL_API}
       dockerfile: Dockerfile
     ports:
       - "3000:80"
