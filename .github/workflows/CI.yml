@@ -69,7 +69,7 @@ jobs:
         with:
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/annea-ui:latest
-          secrts: |
+          secrets: |
             "REACT_APP_GRAPHQL_API=${{secrets.REACT_APP_GRAPHQL_API}}"
             "REACT_APP_AUTHORIZATION_API_TOKEN=${{secrets.REACT_APP_AUTHORIZATION_API_TOKEN}}
 
