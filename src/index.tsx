@@ -12,7 +12,7 @@ import "react-clock/dist/Clock.css";
 import { GlobalStyle } from "./glabalStyle";
 import reportWebVitals from "./reportWebVitals";
 import { ApolloAppProvider } from "./providers/ApolloAppProvider";
-import { Routes } from "./Routes";
+import { Routes } from "./components/routes/Routes";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement,
