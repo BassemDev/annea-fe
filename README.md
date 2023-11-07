@@ -15,7 +15,7 @@ To feel more familiar with these technology and stack please find below all rele
 Please make sure you have the minimum requirements to be able to run the project. This means you already installed Node latest stable version.
 Optional: You could also install Docker in case you would like to create portable image and test it in different machine.
 - You can install node from here: [Download Node](https://nodejs.org/en) 🏗️
-- You can install docker from here: [Download Docker](https://nodejs.org/en) **(keep in mind this step is optional and no need for it for app development)**
+- You can install docker from here: [Download Docker](https://docs.docker.com/get-docker/) **(keep in mind this step is optional and no need for it for app development)**
 
 ## How to run the project ⏲
 This a simple NPM project, this mean you just need to install the package used first, then project will be able to be started:
