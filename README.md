@@ -42,7 +42,14 @@ Watch Usage
 ```
 - Click **a** to run all the test for example.
 
-## Developer important note 🎯
+## Developer important notes 🎯
 - Please keep in your mind that this project use huskies which is a pre-check before you commit and push.\
     - This is a safety to keep always the project build successful and the code style unique cross all the developers. So always keep in your mind to run the formatter before pushing.
-- If you need to use a new Query or Mutation for your backend system, please do **NOT** add new api by hand, you should rather generate the schema via the command line ``npm run generateSchema``.     
+- If you need to use a new Query or Mutation for your backend system, please do **NOT** add new api by hand, you should rather generate the schema via the command line ``npm run generateSchema``.
+
+## Building and Deployment
+The CI/CD of this project is handled by the github actions workflow:
+- You can visit the actions tab to find out all the previous build of this project.
+For the project deployment:
+- At the end of the workflow and the sucess of all the jobs, we will have images hosted in the dockerHUB
+- With simple manual click in the cloud service, we will have the project live under the following link: [Annea UI](https://annea-ui.onrender.com/)
