@@ -18,6 +18,7 @@ export const GET_INDICATORS_BY_ID = gql`
       variable
       timestamp
       turbineId
+      indicator
     }
   }
 `;

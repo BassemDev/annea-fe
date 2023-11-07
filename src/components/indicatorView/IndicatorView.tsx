@@ -15,6 +15,7 @@ import {
 } from "../../__generated_graphql__/graphql";
 import { Search } from "../search/Search";
 import { DELETE_INDICATOR } from "../../API/mutation/indicators";
+import { DISPLAY_SECOND, SEVERITY } from "../../constants/errorconstants";
 
 const Wrapper = styled.div`
   display: flex;
@@ -27,7 +28,7 @@ const Wrapper = styled.div`
   margin-right: auto;
 `;
 
-export const IndicatorView = () => {
+export const IndicatorView: React.FunctionComponent = () => {
   // Fetched of the list of indicators
   const { loading, error, data, refetch } = useQuery<{
     indicators: Indicator[];
@@ -78,18 +79,18 @@ export const IndicatorView = () => {
     if (toast && toast.current) {
       if (response.data?.affected !== 0) {
         toast.current.show({
-          severity: "info",
+          severity: SEVERITY.info,
           summary: "Confirmed",
           detail: `Operation successful - Indicator with ${id} does NOT exist any more.`,
-          life: 3000,
+          life: DISPLAY_SECOND.success,
         });
       } else {
         toast.current.show({
-          severity: "error",
+          severity: SEVERITY.error,
           summary: "Not possible",
           detail:
-            "You request failed - please check the indicator you would like to delete",
-          life: 3000,
+            "Your request failed - Please check the indicator you would like to delete.",
+          life: DISPLAY_SECOND.error,
         });
       }
     }
