@@ -1,5 +1,4 @@
 import React, { FormEvent, useState, useRef } from "react";
-import { useParams } from "react-router-dom";
 import { Fieldset } from "primereact/fieldset";
 import {
   InputNumber,
@@ -8,17 +7,17 @@ import {
 import { Button } from "primereact/button";
 import { Value } from "react-datetime-picker/dist/cjs/shared/types";
 import { Toast } from "primereact/toast";
+import { useHistory } from "react-router-dom";
 
-import { IndicatorEditorRouteParam } from "./types";
 import styled from "styled-components";
-import { GET_INDICATORS_BY_ID } from "../../API/queries/indicators";
-import { useMutation, useQuery } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import { Indicator } from "../../__generated_graphql__/graphql";
 import { Hint } from "../shared/Hint/Hint";
-import { isFromValuesSame } from "./formHelpers";
 import DateTimePicker from "react-datetime-picker";
-import { UPDATE_INDICATOR } from "../../API/mutation/indicators";
+import { CREATE_INDICATOR } from "../../API/mutation/indicators";
 import { DISPLAY_SECOND, SEVERITY } from "../../constants/errorconstants";
+import { isValidFormValues } from "./formHelpers";
+import { PATH_ROUTES } from "../../constants/pathRoutes";
 
 const Wrapper = styled.div`
   display: flex;
@@ -48,10 +47,6 @@ const ButtonContainer = styled.div`
   margin-top: 60px;
 `;
 
-const Spacer = styled.div`
-  margin-right: 16px;
-`;
-
 const SpacerUp = styled.div`
   margin-top: 2px;
 `;
@@ -60,53 +55,37 @@ const DateTimePickerContainer = styled.div`
   text-align: left;
 `;
 
-export const IndicatorEditor = () => {
-  const { id } = useParams<IndicatorEditorRouteParam>();
-  const [indicator, setIndicator] = useState<number | null | undefined>();
-  const [variable, setVariable] = useState<number | null | undefined>();
-  const [turbineId, setTurbineId] = useState<number | null | undefined>();
+export const IndicatorCreator = () => {
+  const [indicator, setIndicator] = useState<number | null>();
+  const [variable, setVariable] = useState<number | null>();
+  const [turbineId, setTurbineId] = useState<number | null>();
   const [dateTimeValue, setDateTimeValue] = useState<Value>();
   const toast = useRef<Toast>(null);
-
-  // Fetch data related to indicator loaded in this page
-  const { loading, error, data } = useQuery<{
-    indicator: Indicator;
-  }>(GET_INDICATORS_BY_ID, {
-    variables: { id: Number(id) },
-    onCompleted: (data) => {
-      console.log("this is it", data.indicator);
-      setTurbineId(data.indicator.turbineId);
-      setIndicator(data.indicator.indicator);
-      setVariable(data.indicator.variable);
-      setDateTimeValue(new Date(data.indicator.timestamp));
-    },
-  });
+  const navigate = useHistory();
 
   // Update indicator date
-  const [updateIndicator, { loading: updateLoading }] = useMutation<{
-    updateIndicator: Indicator;
-  }>(UPDATE_INDICATOR, {
-    onCompleted: (data) => {
+  const [createIndicator, { loading }] = useMutation<{
+    createIndicator: Indicator;
+  }>(CREATE_INDICATOR, {
+    onCompleted: () => {
       if (toast && toast.current) {
         toast.current.show({
           severity: SEVERITY.info,
           summary: "Confirmed",
-          detail: `Operation successful - Indicator with ${id} was Updated.`,
+          detail: `Operation successful - Indicator is Created.`,
           life: DISPLAY_SECOND.success,
         });
       }
 
-      setTurbineId(data.updateIndicator.turbineId);
-      setIndicator(data.updateIndicator.indicator);
-      setVariable(data.updateIndicator.variable);
-      setDateTimeValue(new Date(data.updateIndicator.timestamp));
+      // Forward to the main page after success creation
+      navigate.push(PATH_ROUTES.home);
     },
     onError: (error) => {
       if (toast && toast.current) {
         toast.current.show({
           severity: SEVERITY.error,
           summary: "Not possible",
-          detail: `Your request failed - Please check the indicator you would like to update.`,
+          detail: `Your request failed - Please check the indicator you would like to create.`,
           life: DISPLAY_SECOND.error,
         });
       }
@@ -125,13 +104,12 @@ export const IndicatorEditor = () => {
     setTurbineId(e.value);
   };
 
-  const handleIndicatorUpdate = async (e: FormEvent<HTMLFormElement>) => {
+  const handleIndicatorCreation = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    await updateIndicator({
+    await createIndicator({
       variables: {
-        updateIndicatorInput: {
-          id: Number(id),
+        createIndicatorInput: {
           indicator: Number(indicator),
           variable: Number(variable),
           turbineId: Number(turbineId),
@@ -145,29 +123,11 @@ export const IndicatorEditor = () => {
     setDateTimeValue(e);
   };
 
-  const revertChanges = () => {
-    setTurbineId(data?.indicator.turbineId);
-    setIndicator(data?.indicator.indicator);
-    setVariable(data?.indicator.variable);
-    setDateTimeValue(new Date(data?.indicator.timestamp));
-  };
-
-  if (loading) {
-    return <>We are loading data.....</>;
-  }
-
-  if (error) {
-    return <>There was an error loading the data </>;
-  }
-
   return (
     <Wrapper>
       <Toast ref={toast} />
-      <Fieldset
-        legend={`Update Indicator with id ${id}`}
-        style={{ width: "50%" }}
-      >
-        <form onSubmit={handleIndicatorUpdate}>
+      <Fieldset legend={`Create new indicator`} style={{ width: "50%" }}>
+        <form onSubmit={handleIndicatorCreation}>
           <InputGroupContainer>
             <label>Indicator:</label>
             <StyledInputNumber
@@ -177,6 +137,7 @@ export const IndicatorEditor = () => {
               id="indicator"
               minFractionDigits={2}
               maxFractionDigits={5}
+              placeholder={"Please type the indicator here."}
             />
             <SpacerUp />
             <Hint message="Indicator is the matrix associated to the turbine based on wind." />
@@ -188,6 +149,7 @@ export const IndicatorEditor = () => {
               onValueChange={handleTurbineIdChange}
               name="turbine-id"
               id="turbine-id"
+              placeholder={"Please type the turbine id."}
             />
             <SpacerUp />
             <Hint message="Turbine id the indentifier associated to the turbine matrix." />
@@ -199,6 +161,7 @@ export const IndicatorEditor = () => {
               onValueChange={handleVariableChange}
               name="variable"
               id="variable"
+              placeholder={"Please type the variable here."}
             />
             <SpacerUp />
             <Hint message="Varibale is a matrix additional to the indicator in the turbine." />
@@ -212,30 +175,17 @@ export const IndicatorEditor = () => {
           </DateTimePickerContainer>
           <ButtonContainer>
             <Button
-              loading={updateLoading}
-              label="Save"
+              loading={loading}
+              label="Create"
               type="submit"
-              disabled={isFromValuesSame(
-                {
-                  indicator: data?.indicator.indicator,
-                  variable: data?.indicator.variable,
-                  turbineId: data?.indicator.turbineId,
-                  timestamp: new Date(data?.indicator.timestamp),
-                },
-                {
+              disabled={
+                !isValidFormValues({
                   indicator,
                   variable,
+                  timestamp: dateTimeValue || undefined,
                   turbineId,
-                  timestamp: dateTimeValue,
-                },
-              )}
-            />
-            <Spacer />
-            <Button
-              label="Revert"
-              onClick={revertChanges}
-              severity="warning"
-              type="reset"
+                })
+              }
             />
           </ButtonContainer>
         </form>

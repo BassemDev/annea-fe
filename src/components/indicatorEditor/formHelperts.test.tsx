@@ -1,16 +1,16 @@
 import { isFromValuesSame } from "./formHelpers";
-import { Formvalues } from "./types";
+import { FormValues } from "./types";
 
 describe("isFromValuesSame", () => {
   it("should return true WHEN values are same (case null)", () => {
     // Arrange
-    const oldValues: Formvalues = {
+    const oldValues: FormValues = {
       indicator: null,
       variable: null,
       turbineId: null,
       timestamp: null,
     };
-    const newValues: Formvalues = {
+    const newValues: FormValues = {
       indicator: null,
       variable: null,
       turbineId: null,
@@ -26,13 +26,13 @@ describe("isFromValuesSame", () => {
 
   it("should return true WHEN values are same (case undefined)", () => {
     // Arrange
-    const oldValues: Formvalues = {
+    const oldValues: FormValues = {
       indicator: undefined,
       variable: undefined,
       turbineId: undefined,
       timestamp: undefined,
     };
-    const newValues: Formvalues = {
+    const newValues: FormValues = {
       indicator: undefined,
       variable: undefined,
       turbineId: undefined,
@@ -48,13 +48,13 @@ describe("isFromValuesSame", () => {
 
   it("should return true WHEN values are same (case numerci valid values)", () => {
     // Arrange
-    const oldValues: Formvalues = {
+    const oldValues: FormValues = {
       indicator: 3,
       variable: 4,
       turbineId: 5,
       timestamp: new Date(),
     };
-    const newValues: Formvalues = {
+    const newValues: FormValues = {
       indicator: 3,
       variable: 4,
       turbineId: 5,
@@ -70,13 +70,13 @@ describe("isFromValuesSame", () => {
 
   it("should return false WHEN values are NOT same (case numerci valid values)", () => {
     // Arrange
-    const oldValues: Formvalues = {
+    const oldValues: FormValues = {
       indicator: 3,
       variable: 4,
       turbineId: 5,
       timestamp: new Date(),
     };
-    const newValues: Formvalues = {
+    const newValues: FormValues = {
       indicator: 0,
       variable: 8,
       turbineId: 9,

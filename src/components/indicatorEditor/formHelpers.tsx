@@ -1,8 +1,8 @@
-import { Formvalues } from "./types";
+import { FormValues } from "./types";
 
 export const isFromValuesSame = (
-  oldValues: Formvalues,
-  newValues: Formvalues,
+  oldValues: FormValues,
+  newValues: FormValues,
 ) => {
   return (
     oldValues.turbineId === newValues.turbineId &&
