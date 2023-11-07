@@ -102,7 +102,6 @@ export const IndicatorEditor = () => {
       setDateTimeValue(new Date(data.updateIndicator.timestamp));
     },
     onError: (error) => {
-      console.log("The error is", error);
       if (toast && toast.current) {
         toast.current.show({
           severity: SEVERITY.error,
