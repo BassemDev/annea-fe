@@ -55,7 +55,7 @@ const DateTimePickerContainer = styled.div`
   text-align: left;
 `;
 
-export const IndicatorCreator = () => {
+export const IndicatorCreator: React.FunctionComponent = () => {
   const [indicator, setIndicator] = useState<number | null>();
   const [variable, setVariable] = useState<number | null>();
   const [turbineId, setTurbineId] = useState<number | null>();
@@ -171,6 +171,7 @@ export const IndicatorCreator = () => {
               onChange={handleDateTimeUpdate}
               value={dateTimeValue}
               format={"y-MM-dd h:mm:ss a"}
+              data-testid="date-time-picker"
             />
           </DateTimePickerContainer>
           <ButtonContainer>
