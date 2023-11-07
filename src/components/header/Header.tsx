@@ -22,13 +22,13 @@ const NavItemLabel = styled(NavLink)`
   text-decoration: none;
 
   &.active {
-    color: #4be580;
+    color: #307062;
   }
 
   &.active:before {
     visibility: visible;
     width: 80%;
-    background-color: #4be580;
+    background-color: #307062;
   }
 
   &:hover {
