@@ -5,7 +5,7 @@ This platform is the frontend project and it's built with the library react js, 
 ## Project stack information
 The project is built with CRA (create react app) which is just an boilerplate for react project.
 The porject main language is Typescript (Javascript + Types) for all the patterns and logic, React component for the views and UI interaction with JSX syntax and graphql for interacting with backend data.
-To feel more familiar with these technology and stack please find below all relevant :
+To feel more familiar with these technologies and stack, please find below all relevant documentations :
 - ReactJs (The library of view components) -> [RECT DOCS](https://react.dev/) 👩‍💻🧑‍💻
 - CRA (CLI and package to generate fresh boilerplate of react project) -> [CRA DOCS](https://create-react-app.dev/docs/getting-started/) 💫
 - Typescript (Javascript with types) -> [Typescript DOCS](https://www.typescriptlang.org/) 🧠
