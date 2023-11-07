@@ -7,3 +7,14 @@ export const DELETE_INDICATOR = gql`
     }
   }
 `;
+
+export const UPDATE_INDICATOR = gql`
+  mutation UpdateIndicator($updateIndicatorInput: UpdateIndicatorInput!) {
+    updateIndicator(updateIndicatorInput: $updateIndicatorInput) {
+      variable
+      timestamp
+      turbineId
+      indicator
+    }
+  }
+`;
