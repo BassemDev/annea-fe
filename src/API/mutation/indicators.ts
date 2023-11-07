@@ -18,3 +18,14 @@ export const UPDATE_INDICATOR = gql`
     }
   }
 `;
+
+export const CREATE_INDICATOR = gql`
+  mutation CreateIndicator($createIndicatorInput: CreateIndicatorInput!) {
+    createIndicator(createIndicatorInput: $createIndicatorInput) {
+      indicator
+      variable
+      turbineId
+      timestamp
+    }
+  }
+`;

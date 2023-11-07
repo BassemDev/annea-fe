@@ -9,7 +9,7 @@ const NavItemLabel = styled(NavLink)`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  color: #fff;
+  color: #307062;
   font-size: 16px;
   font-weight: 650;
   padding: 0;
@@ -21,37 +21,8 @@ const NavItemLabel = styled(NavLink)`
   cursor: pointer;
   text-decoration: none;
 
-  &.active {
-    color: #307062;
-  }
-
-  &.active:before {
-    visibility: visible;
-    width: 80%;
-    background-color: #307062;
-  }
-
   &:hover {
     color: #4be580;
-  }
-
-  &:hover:before {
-    visibility: visible;
-    width: 80%;
-    background-color: #4be580;
-  }
-
-  &:before {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 2px;
-    bottom: -6px;
-    left: 0;
-    width: 0;
-    background-color: #fff;
-    visibility: hidden;
-    transition: all 0.3s ease-in-out 0s;
   }
 `;
 
@@ -122,7 +93,20 @@ export const Header: React.FunctionComponent = () => {
         </LogoContainer>
         <Navbar>
           <NavItem>
-            <NavItemLabel to={PATH_ROUTES.home}>Home</NavItemLabel>
+            <NavItemLabel
+              to={PATH_ROUTES.home}
+              isActive={(match, location) => !!match}
+            >
+              Home
+            </NavItemLabel>
+          </NavItem>
+          <NavItem>
+            <NavItemLabel
+              to={PATH_ROUTES.creatorPage}
+              isActive={(match, location) => !!match}
+            >
+              New Indicator
+            </NavItemLabel>
           </NavItem>
         </Navbar>
       </StyledNavigationMenu>
