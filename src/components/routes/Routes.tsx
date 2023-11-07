@@ -1,12 +1,12 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 
-import { PATH_ROUTES } from "./constants/pathRoutes";
-import { App } from "./components/app/App";
-import { NotFound } from "./components/notFound/NotFound";
-import { Header } from "./components/header/Header";
-import { IndicatorEditor } from "./components/indicatorEditor/IndicatorEditor";
-import { IndicatorCreator } from "./components/indicatorCreactor/IndicatorCreator";
+import { PATH_ROUTES } from "../../constants/pathRoutes";
+import { App } from "../app/App";
+import { NotFound } from "../notFound/NotFound";
+import { Header } from "../header/Header";
+import { IndicatorEditor } from "../indicatorEditor/IndicatorEditor";
+import { IndicatorCreator } from "../indicatorCreactor/IndicatorCreator";
 
 export const Routes: React.FunctionComponent = () => {
   return (

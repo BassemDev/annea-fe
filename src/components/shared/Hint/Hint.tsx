@@ -10,5 +10,9 @@ interface Props {
 }
 
 export const Hint: React.FunctionComponent<Props> = ({ message }) => {
-  return <StyledSmall id="username-help">{message}</StyledSmall>;
+  return (
+    <StyledSmall id="username-help" data-testid="hint">
+      {message}
+    </StyledSmall>
+  );
 };
