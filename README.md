@@ -1,11 +1,11 @@
 # ANNEA UI 📃
 The following project allows to interact with indicator from back-office and manage operations in relation to it.
-This platform is the frontend project and it's build via the library react js, please take a look at the section stack below 👇 to know how to run it.
+This platform is the frontend project and it's built with the library react js, please take a look at the section stack below 👇 to know how to run it.
 
 ## Project stack information
 The project is built with CRA (create react app) which is just an boilerplate for react project.
 The porject main language is Typescript (Javascript + Types) for all the patterns and logic, React component for the views and UI interaction with JSX syntax and graphql for interacting with backend data.
-To feel more familiar with these technology and stack please find below all relevant :
+To feel more familiar with these technologies and stack, please find below all relevant documentations :
 - ReactJs (The library of view components) -> [RECT DOCS](https://react.dev/) 👩‍💻🧑‍💻
 - CRA (CLI and package to generate fresh boilerplate of react project) -> [CRA DOCS](https://create-react-app.dev/docs/getting-started/) 💫
 - Typescript (Javascript with types) -> [Typescript DOCS](https://www.typescriptlang.org/) 🧠
@@ -26,7 +26,7 @@ This a simple NPM project, this mean you just need to install the package used f
 If everything is fine, then a new tab will open automatically in your default browser otherwise please go to this page `http://localhost:3000`.
 
 ## Test the project 🧨
-The project conatain different test case of functionality and components:\
+The project conatain different test cases of functionalities and components:\
 1. run the command ``npm test``
 This is a test in watch mode, mean you need to interact with it in order to go to the next step. (Take a look below, please):
 ```
@@ -43,7 +43,7 @@ Watch Usage
 - Click **a** to run all the test for example.
 
 ## Developer important notes 🎯
-- Please keep in your mind that this project use huskies which is a pre-check before you commit and push.\
+- Please keep in your mind that this project uses huskies which is a pre-check before you commit and push.\
     - This is a safety to keep always the project build successful and the code style unique cross all the developers. So always keep in your mind to run the formatter before pushing.
 - If you need to use a new Query or Mutation for your backend system, please do **NOT** add new api by hand, you should rather generate the schema via the command line ``npm run generateSchema``.
 
