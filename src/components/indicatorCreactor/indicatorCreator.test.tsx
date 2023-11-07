@@ -1,9 +1,9 @@
 import React from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
-
-import { IndicatorCreator } from "./IndicatorCreator";
 import { MockedProvider } from "@apollo/client/testing";
 import { PrimeReactProvider } from "primereact/api";
+
+import { IndicatorCreator } from "./IndicatorCreator";
 
 const setup = () => {
   // Arrange
