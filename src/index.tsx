@@ -1,12 +1,15 @@
 // External dependencies imports
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { GlobalStyle } from "./glabalStyle";
+import { BrowserRouter } from "react-router-dom";
 import { PrimeReactProvider } from "primereact/api";
 import "primereact/resources/themes/lara-light-indigo/theme.css";
-import { BrowserRouter } from "react-router-dom";
+import "react-datetime-picker/dist/DateTimePicker.css";
+import "react-calendar/dist/Calendar.css";
+import "react-clock/dist/Clock.css";
 
 // Internal dependencies imports
+import { GlobalStyle } from "./glabalStyle";
 import reportWebVitals from "./reportWebVitals";
 import { ApolloAppProvider } from "./providers/ApolloAppProvider";
 import { Routes } from "./Routes";
