@@ -4,10 +4,12 @@ import { MdOutlineDeleteSweep } from "react-icons/md";
 import { AiOutlineEdit } from "react-icons/ai";
 import { BiSolidError } from "react-icons/bi";
 import { AiOutlineNotification } from "react-icons/ai";
+import { generatePath, useHistory } from "react-router-dom";
 
 import { TABLE_HEADER_LABELS } from "./constants";
 import { Indicator } from "../../__generated_graphql__/graphql";
 import { ApolloError } from "@apollo/client";
+import { PATH_ROUTES } from "../../constants/pathRoutes";
 
 const TableHeader = styled.th`
   padding: 5px;
@@ -85,11 +87,20 @@ interface Props {
   onIndicatorDelete: (id: number) => void;
 }
 
-export const IndicatorTable: React.FC<Props> = ({
+export const IndicatorTable: React.FunctionComponent<Props> = ({
   indicators,
   error,
   onIndicatorDelete,
 }) => {
+  const navigate = useHistory();
+
+  const editIndicatorPaths = (id: number) => {
+    // Dynamic route creation
+    const route = generatePath(PATH_ROUTES.editorPage, { id });
+
+    navigate.push(route);
+  };
+
   return (
     <Table>
       <thead>
@@ -138,6 +149,7 @@ export const IndicatorTable: React.FC<Props> = ({
                   size={22}
                   color="#41c6b4"
                   cursor="pointer"
+                  onClick={() => editIndicatorPaths(indicator.id)}
                 />
                 <SpacerRight />
                 <StyledMdOutlineDeleteSweep
