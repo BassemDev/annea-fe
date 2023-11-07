@@ -9,7 +9,7 @@ import { setContext } from "@apollo/client/link/context";
 import { environmentVariableConfig } from "../config/environmentVariableConfig";
 
 const httpLink = createHttpLink({
-  uri: "http://localhost:3001/graphql",
+  uri: environmentVariableConfig.graphqlAPI,
 });
 
 const authLink = setContext((_, { headers }) => {
