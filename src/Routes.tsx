@@ -6,6 +6,7 @@ import { App } from "./components/app/App";
 import { NotFound } from "./components/notFound/NotFound";
 import { Header } from "./components/header/Header";
 import { IndicatorEditor } from "./components/indicatorEditor/IndicatorEditor";
+import { IndicatorCreator } from "./components/indicatorCreactor/IndicatorCreator";
 
 export const Routes: React.FunctionComponent = () => {
   return (
@@ -17,6 +18,11 @@ export const Routes: React.FunctionComponent = () => {
           exact
           path={PATH_ROUTES.editorPage}
           component={IndicatorEditor}
+        />
+        <Route
+          exact
+          path={PATH_ROUTES.creatorPage}
+          component={IndicatorCreator}
         />
         <Route component={NotFound} />
       </Switch>
