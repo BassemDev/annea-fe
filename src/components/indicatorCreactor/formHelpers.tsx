@@ -4,7 +4,7 @@ export const isValidFormValues = (values: FormValues) => {
   return (
     !!values.indicator &&
     !!values.timestamp &&
-    values.turbineId &&
+    !!values.turbineId &&
     !!values.variable
   );
 };
