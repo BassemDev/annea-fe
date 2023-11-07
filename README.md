@@ -1,6 +1,6 @@
 # ANNEA UI 📃
 The following project allows to interact with indicator from back-office and manage operations in relation to it.
-This platform is the frontend project and it's build via the library react js, please take a look at the section stack below 👇 to know how to run it.
+This platform is the frontend project and it's built with the library react js, please take a look at the section stack below 👇 to know how to run it.
 
 ## Project stack information
 The project is built with CRA (create react app) which is just an boilerplate for react project.
